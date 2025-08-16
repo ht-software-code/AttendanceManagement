@@ -36,18 +36,26 @@ const Logout = () => {
             /** StrictMode対策 */
             isFirstRender.current = false;
 
-            logic.Logout();
+            // 同期処理
+            const onActionLogout = async () => {
+                try {
+                    await logic.Logout();
 
-            let userModel: UserModel = {
-                userName: ""
+                    const userModel: UserModel = {
+                        userName: ""
+                    };
+
+                    setUser(userModel);
+
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setLoading(false);
+                    navigate(ViewRouteAccountConsts.Login);
+                }
             };
 
-            setUser(userModel);
-
-            setLoading(false);
-
-            /** 成功でも失敗でも戻る */
-            navigate(ViewRouteAccountConsts.Login);
+            void onActionLogout();
         }
     }, []);
 

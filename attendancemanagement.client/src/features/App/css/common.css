@@ -27,7 +27,7 @@ textarea {
 
 /** フォームと広告ゾーン */
 .form_with_advert__zone {
-    width: 65%;
+    width: 50%;
     border-radius: 20px;
     box-shadow: 0 5px 5px rgba(0,0,0,.4);
     margin: 5em auto;
@@ -83,7 +83,7 @@ textarea {
 
 /** フォーム入力 */
 .form_with_advert_form__input {
-    width: 100%;
+    width: 90%;
     border: none;
     border-bottom: 1px solid #aaa;
     border-radius: 0;

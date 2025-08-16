@@ -111,7 +111,7 @@ const UserCreate = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col className="m-3">
+                                            <Col className="my-3 mx-5">
                                                 <ButtonGeneral
                                                     type="submit"
                                                     className="green"

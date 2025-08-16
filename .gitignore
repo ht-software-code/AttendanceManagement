@@ -31,6 +31,7 @@ Properties/launchSettings.json
 Properties/PublishProfiles/
 Properties/ServiceDependencies/*
 appsettings.json
+.vs/
 
 
 # Logs

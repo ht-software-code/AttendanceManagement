@@ -61,16 +61,24 @@ const Login = () => {
             /** StrictMode対策 */
             isFirstRender.current = false;
 
-            logic.CurrentUser().then(result => {
-                if (result.value) {
-                    setUser(result.value);
-                    navigate(viewRouteAttendanceConsts.AttendanceMenu);
+            // 同期処理
+            const onActionCurrentUser = async () => {
+                try {
+                    const result = await logic.CurrentUser();
+
+                    /** ダイアログ表示 */
+                    if (result.value) {
+                        setUser(result.value);
+                        navigate(viewRouteAttendanceConsts.AttendanceMenu);
+                    }
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setLoading(false);
                 }
-            }).catch(error => {
-                console.log(error);
-            }).finally(() => {
-                setLoading(false);
-            });
+            };
+
+            void onActionCurrentUser();
         }
     }, []);
 
@@ -140,7 +148,7 @@ const Login = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col className="m-3">
+                                            <Col className="my-3 mx-5">
                                                 <ButtonGeneral
                                                     type="submit"
                                                     className="green"
