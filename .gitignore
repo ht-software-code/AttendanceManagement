@@ -17,12 +17,18 @@ desktop.ini
 *.njsproj
 *.sln
 *.sw?
+.env
+.env.*
+.vscode/*
+vite.config.ts
 
 
 # ======== ASP.NET Core (Backend) ========
 bin/
 obj/
 *.user
+Properties/launchSettings.json
+appsettings.json
 
 
 # Logs
