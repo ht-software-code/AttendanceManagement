@@ -18,7 +18,6 @@ namespace AttendanceManagement.Server.Controllers
         ///  コンストラクタ
         /// </summary>
         /// <param name="userManager">ユーザー管理</param>
-        /// <param name="signInManager">認証管理</param>
         /// <param name="authService">認証サービス</param>
         public MainMenuController(
             UserManager<Users> userManager,

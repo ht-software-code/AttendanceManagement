@@ -25,7 +25,6 @@ namespace AttendanceManagement.Server
         /// コンストラクタ
         /// </summary>
         /// <param name="userManager">ユーザー認証マネージャー</param>
-        /// <param name="signInManager">サインイン認証マネージャー</param>
         /// <param name="authService">認証トークンサービス</param>
         protected ApiControllerBase(
             UserManager<Users> userManager,
@@ -74,7 +73,7 @@ namespace AttendanceManagement.Server
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
-                return StatusCode(500, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
+                return StatusCode(StatusCodes.Status500InternalServerError, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
             }
         }
 
@@ -108,7 +107,7 @@ namespace AttendanceManagement.Server
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
-                return StatusCode(500, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
+                return StatusCode(StatusCodes.Status500InternalServerError, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
             }
             finally
             {
@@ -147,7 +146,7 @@ namespace AttendanceManagement.Server
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
-                return StatusCode(500, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
+                return StatusCode(StatusCodes.Status500InternalServerError, ServiceResult<T>.CreateError(ApplicationErrorCodes.UnexpectedError));
             }
             finally
             {
@@ -170,16 +169,19 @@ namespace AttendanceManagement.Server
         /// <returns>結果</returns>
         protected IActionResult ConvertServiceResult<T>(ServiceResult<T> result)
         {
+            // 異常
             if (!result.IsSuccess)
             {
-                if (result.ErrorCode == ApplicationErrorCodes.ValidateParamError.Id)
+                if (result.ErrorCode == ApplicationErrorCodes.UnexpectedError.Id
+                    || result.ErrorCode == ApplicationErrorCodes.NotDataAttendanceUpdateError.Id)
                 {
-                    return BadRequest(result);
+                    return StatusCode(StatusCodes.Status500InternalServerError, result);
                 }
 
-                return Unauthorized(result);
+                return BadRequest(result);
             }
 
+            // 正常
             if (result.ErrorCode == ApplicationErrorCodes.NotRegistAttendanceClockOutError.Id)
             {
                 return Accepted(result);

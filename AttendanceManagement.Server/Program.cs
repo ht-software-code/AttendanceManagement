@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using AttendanceManagement.Server.Schema;
 using AttendanceManagement.Server.Services;
 using Data.DbContexts;
 using Data.Entities;
@@ -109,7 +110,43 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Swaggerサービスを追加
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "AttendanceManagement API", Version = "v1", Description = "APIドキュメント" });
+
+    // 属性（アノテーション）ベースの拡張情報表示
+    c.EnableAnnotations();
+
+    // XMLコメントファイルの読み込み
+    var xmlDirectory = PathHelper.GetPathFromAncestor(AppContext.BaseDirectory, 2, "XML");
+
+    if (Directory.Exists(xmlDirectory))
+    {
+        foreach (var xmlFile in Directory.GetFiles(xmlDirectory, "*.xml"))
+        {
+            c.IncludeXmlComments(xmlFile, includeControllerXmlComments: true);
+        }
+    }
+
+    // カスタムスキーマフィルター
+    c.OperationFilter<SwaggerResultExampleFilter>();
+
+    // JWT認証の設定も追加可能
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { Name = "Authorization", Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey, Scheme = "Bearer", BearerFormat = "JWT", In = Microsoft.OpenApi.Models.ParameterLocation.Header, Description = "JWT Authorization header using the Bearer scheme." });
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement { { new Microsoft.OpenApi.Models.OpenApiSecurityScheme { Reference = new Microsoft.OpenApi.Models.OpenApiReference { Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme, Id = "Bearer" } }, new string[] { } } });
+});
+
 WebApplication app = builder.Build();
+
+// Swaggerミドルウェア有効化
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AttendanceManagement API V1");
+    c.RoutePrefix = "swagger";
+});
 
 // 認証ミドルウェア有効
 app.UseRouting();

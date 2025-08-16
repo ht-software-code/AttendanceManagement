@@ -74,9 +74,15 @@ namespace WebApiService.Common.Const
         public static ApplicationErrorCode EnterWithInMaxLengthError = new ApplicationErrorCode("9013", nameof(ApplicationErrorResource.EnterWithInMaxLengthError));
 
         /// <summary>
+        /// 既にアカウントが登録済みエラー
+        /// </summary>
+        public static ApplicationErrorCode AlreadyExitsAccountError = new ApplicationErrorCode("9014", nameof(ApplicationErrorResource.AlreadyExitsAccountError));
+
+        /// <summary>
         /// エラー用のフォーマットを返します
         /// </summary>
         /// <param name="code">エラー</param>
+        /// <returns>変換した文字列</returns>
         public static string ConvertErrorToString(ApplicationErrorCode code)
         {
             return $"[ErrorCode:{code.Id}]{code.ResourceKey}";

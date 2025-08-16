@@ -9,6 +9,7 @@
         /// アカウント作成の入力値検証を行います。
         /// </summary>
         /// <param name="account">アカウント</param>
+        /// <returns>検証結果辞書</returns>
         public static Dictionary<string, string> CreateUserValidate(UserCreateParam account)
         {
             Dictionary<string, string> validateDic = new Dictionary<string, string>();

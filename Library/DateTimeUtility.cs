@@ -69,7 +69,7 @@ public static class DateTimeUtility
     /// <summary>
     /// DateOnlyからDateTimeに変換
     /// </summary>
-    /// <param name="dateTime">日時</param>
+    /// <param name="date">日時</param>
     /// <returns>日付型</returns>
     public static DateTime ConvertDateOnlyToDate(DateOnly date)
     {

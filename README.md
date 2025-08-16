@@ -31,7 +31,7 @@
 
 ## 🚀 技術スタック
 
-### 🖥️ バックエンド（ASP.NET Core）
+### 🖥️ バックエンド
 
 - **フレームワーク**：ASP.NET Core（.NET 8）
 - **ORマッパー**：Entity Framework Core（Code First）
@@ -42,10 +42,11 @@
 - **多言語対応**：独自 JSON リソースベースによる実装
 - **環境設定**：`appsettings.json` による環境ごとの設定管理
 - **コード品質管理**：StyleCop.Analyzers によるコーディング規約の統一と静的解析
+- SwaggerによるopenAPI仕様書
 
 ---
 
-### 💻 フロントエンド（React）
+### 💻 フロントエンド
 
 - **フレームワーク**：React（TypeScript + Vite）
 - **UIライブラリ**：
@@ -73,7 +74,7 @@
 
 ---
 
-### バックエンド（ASP.NET Core）
+### バックエンド
 
 #### 実行環境
 
@@ -88,10 +89,13 @@
 - **Microsoft.EntityFrameworkCore.Design**: `9.0.8`
 - **Microsoft.EntityFrameworkCore.SqlServer**: `9.0.7`
 - **Microsoft.EntityFrameworkCore.Tools**: `9.0.8`
+- **stylecop.analyzers**: `1.1.118`
+- **swashbuckle.aspnetcore**: `9.0.3`
+- **swashbuckle.aspnetcore.annotations**: `9.0.3`
 
 ---
 
-### フロントエンド（React）
+### フロントエンド
 
 #### 実行環境
 
@@ -141,7 +145,7 @@
 
 2. バックエンド、フロントエンド両方起動する場合は、マルチスタートアップを設定してください。
 
-### バックエンド（ASP.NET Core）
+### バックエンド
 
 1. Visual Studio でソリューションを開く  
    ```
@@ -167,7 +171,7 @@
    ./AttendanceManagement.Server/Properties/launchSettings.json
    ```
 
-### フロントエンド（React）
+### フロントエンド
 
 1. Visual Studio でソリューションファイルを開きます：
 
@@ -199,7 +203,7 @@
 
 ## 📁 ディレクトリ構成
 
-### バックエンド（ASP.NET Core）
+### バックエンド
 
 ```plaintext
 ./AttendanceManagement.Server/               # バックエンドのメインプロジェクト（Web API）
@@ -242,7 +246,7 @@
 └── Resource/                              # 多言語リソース（resx形式）
 ```
 
-### フロントエンド（React）]
+### フロントエンド
 
 ```plaintext
 ./attendancemanagement.client/
@@ -294,6 +298,19 @@
 ├── package.json                # 使用パッケージ定義
 └── README.md                   # このファイル
 ```
+
+---
+
+## API仕様書
+
+### バックエンド
+
+本プロジェクトのバックエンドAPI仕様書は、Swagger UIで公開されています。
+APIの各エンドポイントの詳細な仕様やリクエスト・レスポンスのフォーマットをブラウザ上で確認できます：
+
+以下のリンクからアクセスしてください：
+
+[AttendanceManagement バックエンド API Swagger UI](https://attendancemanagementserver20250815185416-b3htguhjgyfvafg0.japanwest-01.azurewebsites.net/swagger)
 
 ---
 

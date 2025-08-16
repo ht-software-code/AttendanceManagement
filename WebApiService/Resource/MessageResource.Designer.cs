@@ -95,5 +95,176 @@ namespace WebApiService.Resource {
                 return ResourceManager.GetString("KeyIdUserName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   パスワード。例: Password123 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionPassword {
+            get {
+                return ResourceManager.GetString("SWDescriptionPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   更新理由。例: 勤怠登録忘れのため。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionReason {
+            get {
+                return ResourceManager.GetString("SWDescriptionReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   対象月（UTC）のUNIX時間（秒）。例: 1672531200 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionTargetDateUtcUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWDescriptionTargetDateUtcUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザーコード。例: user123 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionUserCode {
+            get {
+                return ResourceManager.GetString("SWDescriptionUserCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザー名。例: 山田 太郎 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionUserName {
+            get {
+                return ResourceManager.GetString("SWDescriptionUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   勤務日のUNIX時間（秒）。例: 1672531200 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionWorkDateUserUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWDescriptionWorkDateUserUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   勤務形態。 1:出社、2:在宅、3:外出 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWDescriptionWorkingStyleState {
+            get {
+                return ResourceManager.GetString("SWDescriptionWorkingStyleState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   勤怠IDは必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredAttendanceId {
+            get {
+                return ResourceManager.GetString("SWRequiredAttendanceId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   出勤時刻（UTC）のUNIX時間（秒）は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredClockInDateUtcUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWRequiredClockInDateUtcUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   出退勤日時は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredClockInOutDateTimeUserUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWRequiredClockInOutDateTimeUserUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   履歴時刻（UTC）のUNIX時間（秒）は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredGenerateDateUtcUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWRequiredGenerateDateUtcUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   パスワードは必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredPassword {
+            get {
+                return ResourceManager.GetString("SWRequiredPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   更新理由は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredReason {
+            get {
+                return ResourceManager.GetString("SWRequiredReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   対象月は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredTargetDateUtcUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWRequiredTargetDateUtcUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザーコードは必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredUserCode {
+            get {
+                return ResourceManager.GetString("SWRequiredUserCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザー名は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredUserName {
+            get {
+                return ResourceManager.GetString("SWRequiredUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   勤務日のUNIX時間（秒）は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredWorkDateUserUnixTimeSec {
+            get {
+                return ResourceManager.GetString("SWRequiredWorkDateUserUnixTimeSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   更新理由は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredWorkingReason {
+            get {
+                return ResourceManager.GetString("SWRequiredWorkingReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   勤務形態は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SWRequiredWorkingStyleState {
+            get {
+                return ResourceManager.GetString("SWRequiredWorkingStyleState", resourceCulture);
+            }
+        }
     }
 }

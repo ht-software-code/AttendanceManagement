@@ -220,7 +220,7 @@ const AttendanceEdit = () => {
                                                                 </div>
                                                             </th>
                                                             <td colSpan={4} className="attendance_edit_table_item fw-light">
-                                                                {attendanceUpdate.workDate ? DateUtility.convertToString(attendanceUpdate.workDate, DateUtility.FORMAT_DATE_WEEKDAY) : ""}
+                                                                {attendanceUpdate.workDate ? DateUtility.convertToString(attendanceUpdate.workDate, DateUtility.FORMAT_DATE) : ""}
                                                             </td>
                                                         </tr>
                                                         <tr>

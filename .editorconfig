@@ -71,7 +71,6 @@ dotnet_diagnostic.CA2242.severity = warning
 # None
 ############################
 
-dotnet_diagnostic.SA0001.severity = none
 dotnet_diagnostic.SA1028.severity = none
 dotnet_diagnostic.SA1101.severity = none
 dotnet_diagnostic.SA1124.severity = none

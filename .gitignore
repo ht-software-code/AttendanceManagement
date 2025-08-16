@@ -28,6 +28,8 @@ bin/
 obj/
 *.user
 Properties/launchSettings.json
+Properties/PublishProfiles/
+Properties/ServiceDependencies/*
 appsettings.json
 
 

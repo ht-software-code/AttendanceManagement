@@ -169,4 +169,12 @@
     <value>ログインに失敗しました。</value>
     <comment>9005</comment>
   </data>
+  <data name="OutClockDateRequiredError" xml:space="preserve">
+    <value>出退勤日時は必須です。</value>
+    <comment>9014</comment>
+  </data>
+  <data name="AlreadyExitsAccountError" xml:space="preserve">
+    <value>既に使用されているユーザIDです。</value>
+    <comment>9015</comment>
+  </data>
 </root>

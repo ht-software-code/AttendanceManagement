@@ -129,4 +129,62 @@
   <data name="KeyIdAttendanceId" xml:space="preserve">
     <value>AttendanceId</value>
   </data>
+  <data name="SWRequiredClockInOutDateTimeUserUnixTimeSec" xml:space="preserve">
+    <value>出退勤日時は必須です。</value>
+  </data>
+  <data name="SWRequiredAttendanceId" xml:space="preserve">
+    <value>勤怠IDは必須です。</value>
+  </data>
+  <data name="SWRequiredReason" xml:space="preserve">
+    <value>更新理由は必須です。</value>
+    <comment>更新理由。例: 誤登録のため削除</comment>
+  </data>
+  <data name="SWRequiredTargetDateUtcUnixTimeSec" xml:space="preserve">
+    <value>対象月は必須です。</value>
+  </data>
+  <data name="SWDescriptionTargetDateUtcUnixTimeSec" xml:space="preserve">
+    <value>対象月（UTC）のUNIX時間（秒）。例: 1672531200</value>
+  </data>
+  <data name="SWRequiredUserCode" xml:space="preserve">
+    <value>ユーザーコードは必須です。</value>
+  </data>
+  <data name="SWDescriptionUserCode" xml:space="preserve">
+    <value>ユーザーコード。例: user123</value>
+  </data>
+  <data name="SWDescriptionWorkingStyleState" xml:space="preserve">
+    <value>勤務形態。 1:出社、2:在宅、3:外出</value>
+  </data>
+  <data name="SWDescriptionReason" xml:space="preserve">
+    <value>更新理由。例: 勤怠登録忘れのため。</value>
+  </data>
+  <data name="SWRequiredPassword" xml:space="preserve">
+    <value>パスワードは必須です。</value>
+  </data>
+  <data name="SWDescriptionPassword" xml:space="preserve">
+    <value>パスワード。例: Password123</value>
+  </data>
+  <data name="SWRequiredUserName" xml:space="preserve">
+    <value>ユーザー名は必須です。</value>
+  </data>
+  <data name="SWDescriptionUserName" xml:space="preserve">
+    <value>ユーザー名。例: 山田 太郎</value>
+  </data>
+  <data name="SWDescriptionWorkDateUserUnixTimeSec" xml:space="preserve">
+    <value>勤務日のUNIX時間（秒）。例: 1672531200</value>
+  </data>
+  <data name="SWRequiredClockInDateUtcUnixTimeSec" xml:space="preserve">
+    <value>出勤時刻（UTC）のUNIX時間（秒）は必須です。</value>
+  </data>
+  <data name="SWRequiredWorkingStyleState" xml:space="preserve">
+    <value>勤務形態は必須です。</value>
+  </data>
+  <data name="SWRequiredWorkingReason" xml:space="preserve">
+    <value>更新理由は必須です。</value>
+  </data>
+  <data name="SWRequiredGenerateDateUtcUnixTimeSec" xml:space="preserve">
+    <value>履歴時刻（UTC）のUNIX時間（秒）は必須です。</value>
+  </data>
+  <data name="SWRequiredWorkDateUserUnixTimeSec" xml:space="preserve">
+    <value>勤務日のUNIX時間（秒）は必須です。</value>
+  </data>
 </root>

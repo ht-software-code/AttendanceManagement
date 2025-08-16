@@ -14,7 +14,7 @@ const Footer = () => {
     return (
         <Container fluid className="footer__area">
             <Row>
-                <p className="text-center m-3">Coded by <a href="https://github.com/">Anonymous</a></p>
+                <p className="text-center m-3">Coded by <a href="https://github.com/ht-software-code/AttendanceManagement/">ht-software-code</a></p>
             </Row>
         </Container>
     )

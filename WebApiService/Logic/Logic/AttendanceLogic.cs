@@ -38,12 +38,12 @@ namespace WebApiService.Logic.Logic
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="param">パラメータ</param>
         /// <returns>結果</returns>
-        public static async Task<ServiceResult<bool>> RegisterClockIn(string userCode, AttendanceClockInOutParam param)
+        public static async Task<ServiceResult<bool?>> RegisterClockIn(string userCode, AttendanceClockInOutParam param)
         {
             var clockInUtcDateTime = DateTimeUtility.ConvertUnixTimeToUtcDateTime(param.ClockInOutDateTimeUserUnixTimeSec);
             if (!clockInUtcDateTime.HasValue)
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.ValidateParamError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.ValidateParamError);
             }
 
             TimeZoneInfo timeZone = TimeZoneConsts.Tokyo.TimeZoneInfo;
@@ -65,10 +65,10 @@ namespace WebApiService.Logic.Logic
             if (result == 0)
             {
                 Logger.Warn($"CreateAttendance error. AttendanceId:{attendance.AttendanceId}");
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
             }
 
-            return ServiceResult<bool>.CreateSuccess(true);
+            return ServiceResult<bool?>.CreateSuccess(true);
         }
 
         /// <summary>
@@ -77,19 +77,19 @@ namespace WebApiService.Logic.Logic
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="param">パラメータ</param>
         /// <returns>結果</returns>
-        public static async Task<ServiceResult<bool>> RegisterClockOut(string userCode, AttendanceClockInOutParam param)
+        public static async Task<ServiceResult<bool?>> RegisterClockOut(string userCode, AttendanceClockInOutParam param)
         {
             var clockOutUtcDateTime = DateTimeUtility.ConvertUnixTimeToUtcDateTime(param.ClockInOutDateTimeUserUnixTimeSec);
             if (!clockOutUtcDateTime.HasValue)
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.ValidateParamError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.ValidateParamError);
             }
 
             var lastAttendance = await AttendanceAccessor.SelectAttendanceLastData(userCode);
             if (lastAttendance == null
                 || lastAttendance.ClockOutDateTime != null)
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
             }
 
             lastAttendance.ClockOutDateTime = clockOutUtcDateTime.Value;
@@ -98,10 +98,10 @@ namespace WebApiService.Logic.Logic
             if (result == 0)
             {
                 Logger.Warn($"UpdateAttendanceClockOut error. AttendanceId:{lastAttendance.AttendanceId}");
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.UnexpectedError);
             }
 
-            return ServiceResult<bool>.CreateSuccess(true);
+            return ServiceResult<bool?>.CreateSuccess(true);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace WebApiService.Logic.Logic
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="param">パラメータ</param>
         /// <returns>結果</returns>
-        public static async Task<ServiceResult<bool>> UpdateAttendance(string userCode, AttendanceUpdateParam param)
+        public static async Task<ServiceResult<bool?>> UpdateAttendance(string userCode, AttendanceUpdateParam param)
         {
             StringBuilder validateSb = new StringBuilder();
             if (param.AttendanceId == Guid.Empty)
@@ -186,13 +186,13 @@ namespace WebApiService.Logic.Logic
             // 入力異常
             if (validateSb.Length > 0)
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.ValidateParamError.Id, validateSb.ToString());
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.ValidateParamError.Id, validateSb.ToString());
             }
 
             var attendance = await AttendanceAccessor.SelectAttendanceForId(param.AttendanceId, userCode);
             if (attendance == null)
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.NotDataAttendanceError);
             }
 
             TimeZoneInfo timeZone = TimeZoneConsts.Tokyo.TimeZoneInfo;
@@ -200,17 +200,17 @@ namespace WebApiService.Logic.Logic
             var validationErrors = ValidateUpdateParam(userCode, param, attendance, timeZone, out updateRecord);
             if (!string.IsNullOrEmpty(validationErrors))
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.ValidateParamError.Id, validationErrors);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.ValidateParamError.Id, validationErrors);
             }
 
             var updateResult = await AttendanceAccessor.UpdateAttendance(updateRecord, param.Reason);
             if (updateResult == null || updateResult.Value == 0)
             {
                 Logger.Warn($"UpdateAttendance failed. AttendanceId:{param.AttendanceId}");
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceUpdateError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.UnexpectedError);
             }
 
-            return ServiceResult<bool>.CreateSuccess(true);
+            return ServiceResult<bool?>.CreateSuccess(true);
         }
 
         /// <summary>
@@ -219,11 +219,11 @@ namespace WebApiService.Logic.Logic
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="param">パラメータ</param>
         /// <returns>結果</returns>
-        public static async Task<ServiceResult<bool>> DeleteAttendance(string userCode, AttendanceDeleteParam param)
+        public static async Task<ServiceResult<bool?>> DeleteAttendance(string userCode, AttendanceDeleteParam param)
         {
             if (!Guid.TryParse(param.AttendanceId, out Guid attendanceId))
             {
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.ValidateParamError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.ValidateParamError);
             }
 
             var deleteParam = new DeleteAttendanceParam
@@ -237,10 +237,10 @@ namespace WebApiService.Logic.Logic
             if (result == null || result.Value == 0)
             {
                 Logger.Warn($"DeleteAttendance failed. AttendanceId:{attendanceId}");
-                return ServiceResult<bool>.CreateError(ApplicationErrorCodes.NotDataAttendanceUpdateError);
+                return ServiceResult<bool?>.CreateError(ApplicationErrorCodes.NotDataAttendanceUpdateError);
             }
 
-            return ServiceResult<bool>.CreateSuccess(true);
+            return ServiceResult<bool?>.CreateSuccess(true);
         }
 
         #region private helper methods
@@ -332,7 +332,7 @@ namespace WebApiService.Logic.Logic
                 sb.AppendLine("UserCode does not match.");
             }
 
-            if (!param.WorkingStyleState.HasValue || WorkingStyleStates.GetState(param.WorkingStyleState.Value) == null)
+            if (WorkingStyleStates.GetState(param.WorkingStyleState) == null)
             {
                 sb.AppendLine("WorkingStyleState is invalid.");
             }
@@ -379,7 +379,7 @@ namespace WebApiService.Logic.Logic
                 ClockOutDateTime = clockOutUtcDateTime ?? null,
                 BreakInDateTime = breakInUtcDateTime ?? null,
                 BreakOutDateTime = breakOutUtcDateTime ?? null,
-                WorkingStyleState = param.WorkingStyleState ?? WorkingStyleStates.Office.State,
+                WorkingStyleState = param.WorkingStyleState,
             };
 
             DateTime workDay = DateTimeUtility.ConvertDateOnlyToDate(updateRecord.WorkDate);

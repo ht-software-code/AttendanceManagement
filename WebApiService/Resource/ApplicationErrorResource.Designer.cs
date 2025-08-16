@@ -70,6 +70,15 @@ namespace WebApiService.Resource {
         }
         
         /// <summary>
+        ///   既に使用されているユーザIDです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AlreadyExitsAccountError {
+            get {
+                return ResourceManager.GetString("AlreadyExitsAccountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   {1}文字以内で入力してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string EnterWithInMaxLengthError {
@@ -138,6 +147,15 @@ namespace WebApiService.Resource {
         public static string NotValidUserError {
             get {
                 return ResourceManager.GetString("NotValidUserError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   出退勤日時は必須です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OutClockDateRequiredError {
+            get {
+                return ResourceManager.GetString("OutClockDateRequiredError", resourceCulture);
             }
         }
         

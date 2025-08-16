@@ -14,8 +14,8 @@ namespace Data.Accessor
         /// <summary>
         /// 勤怠を登録します。
         /// </summary>
-        /// <param name="attendance">勤怠</param>
-        /// <returns>勤怠</returns>
+        /// <param name="attendance">勤怠データ</param>
+        /// <returns>更新件数</returns>
         public static async Task<int> CreateAttendance(InsertAttendanceParam attendance)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -43,7 +43,7 @@ namespace Data.Accessor
         /// </summary>
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="targetDate">指定月</param>
-        /// <returns>勤怠</returns>
+        /// <returns>勤怠データ</returns>
         public static async Task<AttendanceRecords?> SelectAttendanceForWorkDate(string userCode, DateOnly targetDate)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -65,7 +65,7 @@ namespace Data.Accessor
         /// <param name="userCode">ユーザーコード</param>
         /// <param name="dateTimeFrom">開始日</param>
         /// <param name="dateTimeTo">終了日</param>
-        /// <returns>勤怠</returns>
+        /// <returns>勤怠データ</returns>
         public static async Task<List<ResultModel_GetAttendanceListWithHistory>> SelectAttendanceForMonth(string userCode, DateOnly dateTimeFrom, DateOnly dateTimeTo)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -89,7 +89,7 @@ namespace Data.Accessor
         /// </summary>
         /// <param name="attendanceId">勤怠ID</param>
         /// <param name="userCode">ユーザーコード</param>
-        /// <returns>勤怠</returns>
+        /// <returns>勤怠データ</returns>
         public static async Task<AttendanceRecords?> SelectAttendanceForId(Guid attendanceId, string userCode)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -108,7 +108,7 @@ namespace Data.Accessor
         /// 最後の勤怠データを取得します。
         /// </summary>
         /// <param name="userCode">ユーザーコード</param>
-        /// <returns>勤怠</returns>
+        /// <returns>勤怠データ</returns>
         public static async Task<AttendanceRecords?> SelectAttendanceLastData(string userCode)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -127,9 +127,9 @@ namespace Data.Accessor
         /// <summary>
         /// 指定の勤怠を更新します。
         /// </summary>
-        /// <param name="attendance">勤怠</param>
+        /// <param name="attendance">勤怠データ</param>
         /// <param name="reason">理由</param>
-        /// <returns>勤怠</returns>
+        /// <returns>更新件数</returns>
         public static async Task<int?> UpdateAttendance(AttendanceRecords attendance, string reason)
         {
             using (var context = new MyDbContextFactory().CreateDbContext())
@@ -186,7 +186,7 @@ namespace Data.Accessor
         /// <summary>
         /// 勤怠を削除します。
         /// </summary>
-        /// <param name="attendance">勤怠</param>
+        /// <param name="attendance">勤怠データ</param>
         /// <returns>勤怠情報</returns>
         public static async Task<int?> DeleteAttendance(DeleteAttendanceParam attendance)
         {

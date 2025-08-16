@@ -43,7 +43,7 @@
         /// <summary>
         /// 一致する勤務形態を取得します
         /// </summary>
-        /// <param name="state">勤務形態</param>
+        /// <param name="state">勤務形態コード</param>
         /// <returns>勤務形態</returns>
         public static WorkingStyleState? GetState(int state)
         {
